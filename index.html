@@ -8,34 +8,47 @@
     
 </head>
 <body>
-    
+    <h2> Total expense is </h2>
+    <h1 id="totalExp">  </h1>
+    <input type="text" id="input-exp" placeholder="enter expense">
+    <input type='text' id='input-desc' placeholder="enter description">
+    <button id='btn'> Add </button>
     <style>
         body{
-            display: flex;
-            justify-content: center;
-            align-items:center ;
+            display: block;
             color:rgb(59, 27, 88);
             height:100vh;
         }
     </style>
-    <input type="text" id="input" placeholder ="enter number">
-    <button id='btn'>click to increment</button>
+
+
     
+  
     <script>
        
         var btn=document.querySelector('#btn')
         let totalExpense=0;
-       // console.log('at first totalEXPense',totalExpense)
+        document.querySelector('#totalExp').textContent=totalExpense
         
+       const expenseArray=[]
+        // console.log('at first totalEXPense',totalExpense) 
        // console.log('expense before fun' , expense)  //returns NaN bcz we havent entered anyting
        // console.log('type of expense before fun' , typeof(expense))  //returns number
       
         btn.addEventListener('click',function(){
-            let num1=document.querySelector('#input').value
+            let num1=document.querySelector('#input-exp').value
             let expense=parseInt(num1,10)
             totalExpense=totalExpense+expense
 
-            console.log('total expense is '+ totalExpense)
+            let desc=document.querySelector('#input-desc').value
+            let expobj={}
+            expobj.exp=expense
+            expobj.description=desc
+            console.log(expobj)
+            expenseArray.push(expobj)
+            console.table(expenseArray)
+            document.querySelector('#totalExp').textContent=totalExpense
+            
         })
     </script>
 </body>
