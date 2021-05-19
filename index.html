@@ -87,16 +87,24 @@
             let expobj={}
             expobj.exp=expense
             expobj.description=desc
-            
+            expobj.moment=new Date()
+
             //console.log(expobj)
             expenseArray.push(expobj)
             //console.table(expenseArray)
+            const getDateString=(m)=>{
+                return m.toLocaleString('en-US',{
+                    year:'numeric',
+                    month:'long',
+                    day:'numeric'
+                })
+            }
 
-            function createListFunction({ exp, description }){
+            function createListFunction({ exp, description,moment }){
                 return `<li class="list-group-item d-flex justify-content-between">
                         <div class="d-flex flex-column">
                             ${description}
-                            <small class="text-muted">March 11, 2019</small>
+                            <small class="text-muted">${getDateString(moment)}</small>
                         </div>
                         <div>
                             <span class="px-5">
