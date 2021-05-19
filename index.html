@@ -5,28 +5,74 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>expense tracker</title>
-    
+    <link
+		   rel="stylesheet"
+			href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+			integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+			crossorigin="anonymous"
+		/>
+        <script
+			defer
+			src="https://use.fontawesome.com/releases/v5.7.2/js/all.js"
+			integrity="sha384-0pzryjIRos8mFBWMzSSZApWtPl/5++eIfzYmTgBBmXYdhvxPc+XcFEk+zJwDgWbP"
+			crossorigin="anonymous"
+		></script>
 </head>
 <body>
-   
-    <h1 id="totalExp">  </h1>
+    <nav class="navbar navbar-dark bg-dark">
+        <span class="navbar-brand mb-0 h1">XPENSE</span>
+    </nav>
+    <div class="container-fluid bg-light" style="min-height:100vh">
+        <div class="container">
+            <div class="jumbotron mt-4">
+                <div class="input-group mb-3">
+                    <!-- <h1 id="totalExp">  </h1> -->
+                    <input
+                    type='text'
+                    id="input-exp"
+                    class='form-control'
+                    placeholder="Amount spent in Rs."
+                    aria-label="amount"
+                    aria-describedby="amount spent in rupees"/>
+                    
+                <!-- <input type="text" id="input-exp" placeholder="enter expense"> -->
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="spent for">@</span>
+                    </div>
+                    <input type="text"
+                    id='input-desc'
+                    class='form-control'
+                    placeholder='spent at'
+                    aria-label='spent on'
+                    aria-describedby="spent for"
+                    />
+                    <div class='input-group-append'>
+                        <button class='btn btn-outline-primary'
+                        type='button'
+                        id='btn'>Add</button>
+                    </div>
+                </div>
+               
+                <!-- <input type='text' id='input-desc' placeholder="enter description"> -->
+                <!-- <button id='btn'> Add </button> -->
+               
+                </div>
+            </div>
+           <ul class="list-group" id="expenseTable"></ul>
+        </div>
+        
+    </div>
+    <!-- <h1 id="totalExp"> </h1>
     <input type="text" id="input-exp" placeholder="enter expense">
     <input type='text' id='input-desc' placeholder="enter description">
-    <button id='btn'> Add </button>
-    <div id="expenseTable"></div>
-    <style>
-        body{
-            display: block;
-            color:rgb(59, 27, 88);
-            height:100vh;
-        }
-    </style>
-  
+    <button id='btn'> Add </button> -->
+    <!-- <div id="expenseTable"></div> -->
+
     <script>
-       
         var btn=document.querySelector('#btn')
         let totalExpense=0;
-        document.querySelector('#totalExp').textContent=totalExpense
+        //document.querySelector('#totalExp').textContent=totalExpense
         
        const expenseArray=[]
       
@@ -36,21 +82,41 @@
             totalExpense=totalExpense+expense
 
             let desc=document.querySelector('#input-desc').value
+            
             let expobj={}
             expobj.exp=expense
             expobj.description=desc
+            
             console.log(expobj)
             expenseArray.push(expobj)
             console.table(expenseArray)
     
             const exp_arr = expenseArray.map((item)=>{
-                return `<div>exp : ${item.exp} :: desc : ${item.description}</div>`
+                return `
+                    <li class="list-group-item d-flex justify-content-between">
+                        <div class="d-flex flex-column">
+                            ${item.description}
+                            <small class="text-muted">March 11, 2019</small>
+                        </div>
+                        <div>
+                            <span class="px-5">
+                                ${item.exp}
+                            </span>
+                            <button type="button" class="btn btn-outline-danger btn-sm">
+                                <i class="fas fa-trash-alt"></i>
+                            </button>
+                        </div>
+                    </li>
+            `
             })
 
             const arrayToString=exp_arr.join("")
             document.querySelector('#expenseTable').innerHTML=arrayToString
-            const someText= `The expense is ${totalExpense}`
-            document.querySelector('#totalExp').textContent=someText
+            
+            
+            //console.log(arrayToString)
+           // const someText= `The expense is ${totalExpense}`
+            //document.querySelector('#totalExp').textContent=someText
             
         })
     </script>
