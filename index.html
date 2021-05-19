@@ -23,6 +23,7 @@
         <span class="navbar-brand mb-0 h1">XPENSE</span>
     </nav>
     <div class="container-fluid bg-light" style="min-height:100vh">
+        <h1 id="totalExp"> </h1>
         <div class="container">
             <div class="jumbotron mt-4">
                 <div class="input-group mb-3">
@@ -63,8 +64,8 @@
         </div>
         
     </div>
-    <!-- <h1 id="totalExp"> </h1>
-    <input type="text" id="input-exp" placeholder="enter expense">
+    
+     <!-- <input type="text" id="input-exp" placeholder="enter expense">
     <input type='text' id='input-desc' placeholder="enter description">
     <button id='btn'> Add </button> -->
     <!-- <div id="expenseTable"></div> -->
@@ -91,7 +92,7 @@
             expenseArray.push(expobj)
             //console.table(expenseArray)
 
-            const createListFunction=({ exp, description })=>{
+            function createListFunction({ exp, description }){
                 return 
                 `
                     <li class="list-group-item d-flex justify-content-between">
@@ -112,7 +113,9 @@
 
     
             const exp_arr = expenseArray.map((item)=>{
-                createListFunction(item)
+                console.log(item)
+                return createListFunction(item)
+                
             })
 
             const arrayToString=exp_arr.join("")
@@ -121,8 +124,8 @@
            
             
             //console.log(arrayToString)
-           // const someText= `The expense is ${totalExpense}`
-            //document.querySelector('#totalExp').textContent=someText
+            const someText= `Your Total Expense : ${totalExpense}`
+            document.querySelector('#totalExp').textContent=someText
             
         })
     </script>
