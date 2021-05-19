@@ -93,9 +93,7 @@
             //console.table(expenseArray)
 
             function createListFunction({ exp, description }){
-                return 
-                `
-                    <li class="list-group-item d-flex justify-content-between">
+                return `<li class="list-group-item d-flex justify-content-between">
                         <div class="d-flex flex-column">
                             ${description}
                             <small class="text-muted">March 11, 2019</small>
@@ -115,7 +113,6 @@
             const exp_arr = expenseArray.map((item)=>{
                 console.log(item)
                 return createListFunction(item)
-                
             })
 
             const arrayToString=exp_arr.join("")
