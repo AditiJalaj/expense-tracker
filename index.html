@@ -87,32 +87,38 @@
             expobj.exp=expense
             expobj.description=desc
             
-            console.log(expobj)
+            //console.log(expobj)
             expenseArray.push(expobj)
-            console.table(expenseArray)
-    
-            const exp_arr = expenseArray.map((item)=>{
-                return `
+            //console.table(expenseArray)
+
+            const createListFunction=({ exp, description })=>{
+                return 
+                `
                     <li class="list-group-item d-flex justify-content-between">
                         <div class="d-flex flex-column">
-                            ${item.description}
+                            ${description}
                             <small class="text-muted">March 11, 2019</small>
                         </div>
                         <div>
                             <span class="px-5">
-                                ${item.exp}
+                                ${exp}
                             </span>
                             <button type="button" class="btn btn-outline-danger btn-sm">
                                 <i class="fas fa-trash-alt"></i>
                             </button>
                         </div>
                     </li>
-            `
+            ` }
+
+    
+            const exp_arr = expenseArray.map((item)=>{
+                createListFunction(item)
             })
 
             const arrayToString=exp_arr.join("")
             document.querySelector('#expenseTable').innerHTML=arrayToString
             
+           
             
             //console.log(arrayToString)
            // const someText= `The expense is ${totalExpense}`
