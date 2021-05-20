@@ -21,9 +21,9 @@
 <body>
     <nav class="navbar navbar-dark bg-dark">
         <span class="navbar-brand mb-0 h1">XPENSE</span>
+        <span class="navbar-brand mb-0 h1" id="totalExp"></span>
     </nav>
     <div class="container-fluid bg-light" style="min-height:100vh">
-        <h1 id="totalExp"> </h1>
         <div class="container">
             <div class="jumbotron mt-4">
                 <div class="input-group mb-3">
@@ -92,6 +92,7 @@
             //console.log(expobj)
             expenseArray.push(expobj)
             //console.table(expenseArray)
+
             const getDateString=(m)=>{
                 return m.toLocaleString('en-US',{
                     year:'numeric',
@@ -100,7 +101,11 @@
                 })
             }
 
-            function createListFunction({ exp, description,moment }){
+            function deleteitems(){
+             console.log('delete ')   
+            }
+
+            function createListFunction({ exp, description,moment}){
                 return `<li class="list-group-item d-flex justify-content-between">
                         <div class="d-flex flex-column">
                             ${description}
@@ -110,7 +115,7 @@
                             <span class="px-5">
                                 ${exp}
                             </span>
-                            <button type="button" class="btn btn-outline-danger btn-sm">
+                            <button type="button"  class="btn btn-outline-danger btn-sm"  onclick="deleteitems()">
                                 <i class="fas fa-trash-alt"></i>
                             </button>
                         </div>
